@@ -5,7 +5,7 @@ _FILENAME = 'prevcommits.txt'
 class Committer:
 	filepath: str
 
-	def __init__(self, a_filepath: str|None) -> None:
+	def __init__(self, a_filepath: str) -> None:
 		self.filepath = _FILENAME if a_filepath is None else a_filepath
 		logging.debug(f"Commits file is at {self.filepath}");
 
