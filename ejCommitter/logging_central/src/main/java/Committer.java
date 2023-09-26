@@ -6,7 +6,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
+import org.apache.logging.log4j.Logger;
 
 final class Committer
 {
@@ -24,7 +25,7 @@ final class Committer
     {
     	m_logger = a_logger;
         m_filepath = a_filepath;
-        a_logger.log(Level.FINE, String.format("Commits file is at %s", m_filepath));
+        a_logger.debug(String.format("Commits file is at %s", m_filepath));
     }
 
     public boolean CommitWithMsg(String a_msg) 
@@ -35,7 +36,7 @@ final class Committer
 			Files.write(m_filepath, Arrays.asList(a_msg), new StandardOpenOption[]{ StandardOpenOption.CREATE, StandardOpenOption.APPEND });
 		} 
         catch (IOException e) {
-        	m_logger.log(Level.SEVERE, String.format("Failed to write commit message to file. File: %s, Message: %s", m_filepath, a_msg));
+        	m_logger.error(String.format("Failed to write commit message to file. File: %s, Message: %s", m_filepath, a_msg));
 			return false;
 		}
     	
