@@ -1,4 +1,4 @@
-import extralogging as logging
+from extralogging import logging
 import username_provider
 import validator
 from committer import *
@@ -16,10 +16,10 @@ def Main():
 		if validator.isValidCommitMsg(msg):
 			committer.commitWithMsg(msg)
 			print("Changes commited with message")
-			logging.info(msg, extra={'user': username})
+			logging.info(msg) # username is output automatically
 		else:
 			print("Please follow the commit message rules... Aborting commit.")
-			logging.warning(msg, extra={'user': username})
+			logging.warning(msg)
 			return
 
 	committer.showGreetings()
